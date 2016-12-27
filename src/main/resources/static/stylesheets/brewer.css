@@ -117,5 +117,13 @@
 	width: 80px;
 }
 
-  
+ /* Colunas - Pesquisa de Estilos */
+.table-estilos-col-codigo {
+	width: 80px;
+	text-align: left;
+}
+
+.table-estilos-col-codigo td{
+	text-align: left;
+}
 
