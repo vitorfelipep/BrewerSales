@@ -1,0 +1,29 @@
+var Brewer = Brewer || {};
+
+Brewer.MaskaraCpfCnpj = (function() {
+	
+	function MascaraCpfCnpj() {
+		this.radioTipoPessoa = $('.js-radio-tipo-pessoa');
+		this.labelCpfCnpj = $('[for=cpfOuCnpj]');
+		this.inputCpfCnpj = $('#cpfOuCnpj');
+	}
+	
+	MascaraCpfCnpj.prototype.iniciar = function() {
+		this.radioTipoPessoa.on('change', onTipoPessoaAlterado.bind(this));
+	};
+	
+	function onTipoPessoaAlterado(event) {
+		var tipoPessoaSelecionada = $(event.currentTarget);
+		this.labelCpfCnpj.text(tipoPessoaSelecionada.data('documento'));
+		this.inputCpfCnpj.mask(tipoPessoaSelecionada.data('mascara'));
+		this.inputCpfCnpj.val('');
+		this.inputCpfCnpj.removeAttr('disabled');
+	};
+	
+	return MascaraCpfCnpj;
+}());
+
+$(function() {
+	var mascaraCpfCnpj = new Brewer.MaskaraCpfCnpj();
+	mascaraCpfCnpj.iniciar();
+})

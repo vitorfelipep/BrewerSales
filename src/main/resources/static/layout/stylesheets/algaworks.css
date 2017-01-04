@@ -379,6 +379,7 @@
   border-left: 3px solid;
   border-left-color: #1e94d2;
   background: #f4f4f4;
+  
 }
 .aw-menu__item.is-expanded .aw-menu__navigation-icon:before {
   content: "\f0d7";
