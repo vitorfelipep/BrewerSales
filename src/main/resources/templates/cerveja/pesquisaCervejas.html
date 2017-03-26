@@ -3,7 +3,8 @@
 	xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	layout:decorate="layout/LayoutPadrao"
-	xmlns:brewer="http://brewer.algaworks.com">
+	xmlns:brewer="http://brewer.algaworks.com"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 
 <head>
 <title>Pesquisa de cerveja</title>
@@ -15,11 +16,11 @@
 		<div class="page-header">
 			<div class="container-fluid">
 				<div class="row">
-					<div class="col-sm-10">
+					<div class="col-xs-10">
 						<h1>Pesquisa de cervejas</h1>
 					</div>
 
-					<div class="col-sm-2">
+					<div class="col-xs-2" sec:authorize-url="/cervejas/novo">
 						<div class="aw-page-header-controls">
 							<a class="btn btn-default" th:href="@{/cervejas/novo}"> <i
 								class="glyphicon glyphicon-plus-sign"></i><span
@@ -108,7 +109,7 @@
 							<th class="table-cervejas-col-estilo">Estilo</th>
 							<th class="table-cervejas-col-origem">Origem</th>
 							<th class="table-cervejas-col-valor">Valor</th>
-							<th class="table-cervejas-col-acoes"></th>
+							<th class="table-cervejas-col-acoes" sec:authorize="hasRole('ROLE_CADASTRAR_CERVEJA')"></th>
 						</tr>
 					</thead>
 
@@ -123,11 +124,10 @@
 							<td th:text="${cerveja.origem.descricao}">Internacional</td>
 							<td class="text-right" th:text="|R$ ${cerveja.valor}|">R$
 								8.00</td>
-							<td class="text-center"><a class="btn  btn-link  btn-xs"
-								title="Editar"> <i class="glyphicon glyphicon-pencil"></i>
-							</a> <a class="btn  btn-link  btn-xs" title="Excluir"> <i
-									class="glyphicon glyphicon-remove"></i>
-							</a></td>
+							<td class="text-center" sec:authorize="hasRole('ROLE_CADASTRAR_CERVEJA')">
+								<a class="btn  btn-link  btn-xs" title="Editar"><i class="glyphicon glyphicon-pencil"></i></a>
+								<a class="btn  btn-link  btn-xs" title="Excluir"><i class="glyphicon glyphicon-remove"></i></a>
+							</td>
 						</tr>
 						<tr th:if="${pagina.vazia}">
 							<td colspan="7">Nenhuma cerveja encontrada</td>

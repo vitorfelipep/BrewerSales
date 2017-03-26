@@ -41,6 +41,7 @@ public class Estado {
 	public void setSigla(String sigla) {
 		this.sigla = sigla;
 	}
+	
 
 	@Override
 	public int hashCode() {
